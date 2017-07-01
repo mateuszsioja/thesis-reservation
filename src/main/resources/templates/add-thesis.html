@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Thesis-Resv</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" type="text/css"
+          href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+    <link rel="stylesheet" th:href="@{/css/thesis.css}"
+          href="../../css/thesis.css"/>
+</head>
+<body>
+<div th:include="fragments/navbar"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form_main">
+                <h4 class="heading">Add new thesis <span></span></h4>
+                <div class="form">
+                    <form  th:action="@{/add-thesis}" th:object="${thesisForm}" method="post">
+                        <input type="text" placeholder="Subject..." class="txt" th:field="*{subject}"/>
+                        <span th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}">Subject Error</span>
+                        <textarea placeholder="Summary..."  type="text" class="txt_3" th:field="*{summary}"></textarea>
+                        <span th:if="${#fields.hasErrors('summary')}" th:errors="*{summary}">Summary Error</span>
+                        <input type="submit" value="add" name="submit" class="txt2"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

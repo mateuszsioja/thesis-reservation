@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Thesis-Resv</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" type="text/css"
+          href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+    <!--<link rel="stylesheet" th:href="@{/css/thesis.css}"-->
+          <!--href="../../css/thesis.css"/>-->
+</head>
+<body>
+
+<div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <div class="panel-title">Sign Up</div>
+            <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="/login">Sign In</a></div>
+        </div>
+        <div class="panel-body" >
+            <form th:action="@{/register}" th:object="${studentForm}" method="post" id="signupform" class="form-horizontal" role="form">
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">First Name</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control"  th:field="*{firstName}" placeholder="First Name"/>
+                        <div class="alert alert-danger" th:if="${#fields.hasErrors('firstName')}" >
+                            <span th:errors="*{firstName}">First Name Error</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Last Name</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" th:field="*{lastName}" placeholder="Last Name"/>
+                        <div class="alert alert-danger" th:if="${#fields.hasErrors('lastName')}" >
+                            <span th:errors="*{lastName}">Last Name Error</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Username</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" th:field="*{username}" placeholder="Username"/>
+                        <div class="alert alert-danger" th:if="${#fields.hasErrors('username')}" >
+                            <span th:errors="*{username}">Username Error</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Password</label>
+                    <div class="col-md-9">
+                        <input type="password" class="form-control" th:field="*{password}" placeholder="Password"/>
+                        <div class="alert alert-danger" th:if="${#fields.hasErrors('password')}" >
+                            <span th:errors="*{password}">Password Error</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <!-- Button -->
+                    <div class="col-md-offset-3 col-md-9">
+                        <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp; Sign Up</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<script type="text/javascript"
+        src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

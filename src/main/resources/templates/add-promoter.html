@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Thesis-Resv</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" type="text/css"
+          href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+    <link rel="stylesheet" th:href="@{/css/thesis.css}"
+          href="../../css/thesis.css"/>
+</head>
+<body>
+<div th:include="fragments/navbar"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form_main">
+                <h4 class="heading">Add new promoter <span></span></h4>
+                <div class="form">
+                    <form th:action="@{/add-promoter}" th:object="${promoterForm}" method="post">
+                        <input type="text" placeholder="First Name" class="txt" th:field="*{firstName}"/>
+                        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</span>
+                        <input type="text" placeholder="Last Name" class="txt" th:field="*{lastName}"/>
+                        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</span>
+                        <input type="text" placeholder="Username" class="txt" th:field="*{username}"
+                               autocomplete="off"/>
+                        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</span>
+                        <input type="password" placeholder="Password" class="txt" th:field="*{password}"
+                               autocomplete="off"/>
+                        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>
+                        <input type="submit" value="add" name="submit" class="txt2"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

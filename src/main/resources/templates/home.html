@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Thesis-Resv</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" type="text/css"
+          href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+    <link rel="stylesheet" th:href="@{/css/main.css}"
+          href="../../css/main.css"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+</head>
+<body>
+<div th:include="fragments/navbar"></div>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+<div id="PricingTab">
+    <div class="container">
+        <h2><span th:text="${type} + 'theses'"></span></h2>
+        <br/>
+        <div class="row">
+            <table class="table table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th class="tabco1 ">Subject / Summary</th>
+                    <th class="tabco3">Promoter</th>
+                    <th class="tabco4">Student</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="thesis : ${theses}">
+                    <td class="tabco1">
+                        <span class="bold" th:text="${thesis.subject}"></span>
+                        <br/>
+                        <span th:text="${thesis.summary}"></span>
+                    </td>
+                    <td class="tabco3">
+                        <span th:text="${thesis.owner.firstName} + ' ' + ${thesis.owner.lastName} "></span>
+                    </td>
+                    <td class="tabco4">
+                        <span th:if="${thesis.assignedUser}">
+                            <span th:if="${loggedInUser.assignedThesis != null
+                                and loggedInUser.assignedThesis.id == thesis.id}">
+
+                                <form th:action="@{/unsubscribe}" th:object="${unsubscribe}" method="post">
+                                    <input type="hidden" id="studentId" name="studentId" th:value="${loggedInUser.id}"/>
+                                    <input type="hidden" id="thesisId" name="thesisId" th:value="${thesis.id}"/>
+                                    <input type="hidden" id="typeOfResultedTheses" name="typeOfResultedTheses"
+                                           th:value="${type}"/>
+                                    <input type="submit" value="Unsubscribe"/>
+                                </form>
+
+                            </span>
+
+                            <span th:if="${loggedInUser.assignedThesis != null
+                                and loggedInUser.assignedThesis.id != thesis.id
+                                or loggedInUser.assignedThesis == null}"
+                                  th:text="${thesis.assignedUser.firstName} + ' ' + ${thesis.assignedUser.lastName} "></span>
+                        </span>
+                        <span sec:authorize="hasAuthority('ROLE_USER')"
+                              th:if="${thesis.assignedUser == null and loggedInUser.assignedThesis == null}">
+                                -<br/>
+
+                            <form th:action="@{/assign}" th:object="${assignDto}" method="post">
+                                <input type="hidden" id="studentId" name="studentId" th:value="${loggedInUser.id}"/>
+                                <input type="hidden" id="thesisId" name="thesisId" th:value="${thesis.id}"/>
+                                <input type="hidden" id="typeOfResultedTheses" name="typeOfResultedTheses"
+                                       th:value="${type}"/>
+                                <input type="submit" value="Assign to me"/>
+                            </form>
+
+                        </span>
+                        <span th:if="${thesis.assignedUser == null and loggedInUser.assignedThesis != null}">
+                                -
+                        </span>
+                        <span sec:authorize="hasAuthority('ROLE_ADMIN')"
+                              th:if="${thesis.assignedUser == null}">-</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div><!--row-->
+    </div><!--container-->
+</div><!--PricingTab-->
+
+</body>
+</html>

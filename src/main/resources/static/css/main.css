@@ -1,0 +1,103 @@
+.verticalLine {
+    border-left: thin dotted white;
+}
+
+
+#PricingTab {
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    padding: 0 0;
+}
+#PricingTab h2{
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 35px;
+    color: black;
+    text-transform: uppercase;
+    text-align: center;
+}
+#PricingTab table{
+    max-width:1200px;
+    margin: 0 auto;
+    box-shadow: 1px 1px 149px 0px rgb(24, 25, 25);
+}
+
+.tabco1 {
+    background: #fff;
+    width: 70%;
+    padding: 10px !important;
+}
+th.tabco1 {
+    background: #F6EEEE;
+    padding: 32px 10px !important;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #000;
+}
+.tabco2 {
+    background: #009688;
+    text-align: center;
+    color: #fff;
+}
+
+th.tabco2 {
+    background: #00C853;
+    padding: 20px 5px !important;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+.tabco3 {
+    background: #03A9F4;
+    text-align: center;
+    width: 15%;
+    color: #fff;
+}
+th.tabco3 {
+    background: #039BE5;
+
+    padding: 20px 10px !important;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+.tabco4 {
+    background: #EF5350;
+    text-align: center;
+    width: 15%;
+    color: #fff;
+}
+th.tabco4 {
+    background: #E53935;
+
+    padding: 20px 10px !important;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+.rightSign {
+    color: #1ab921;
+    background: #fff;
+    border-radius: 45px;
+    padding: 5px;
+    border: 2px solid;
+    box-shadow: 0px 0px 11px -5px #000;
+}
+.crossSign {
+    color: #de2315;
+    background: #fff;
+    border-radius: 45px;
+    padding: 5px 7px;
+    border: 2px solid;
+    box-shadow: 0px 0px 11px -5px #000;
+}
+.White-Yellow {
+    border-top: 0;
+    border-left: 75px solid #fff;
+    border-right: 75px solid #FEF200;
+    height: 5px;
+    width: 0px;
+}
+.bold {
+    font-weight: bold;
+}
+input {
+    color: black;
+}
